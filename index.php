@@ -691,8 +691,8 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
   .logo-kadikoy,.logo-matbaa{font-size:24px}
   .logo-sub{font-size:8px;letter-spacing:1px}
   .logo-since{font-size:9px}
-  .header-logo-text{text-align:left}
-  .header-right{text-align:left}
+  .header-logo-text{text-align:right}
+  .header-right{text-align:right}
   .nav-menu>li>a{padding:0 8px;font-size:11px}
   .nav-logo{padding:0 6px}
   .nav-logo img{width:30px;height:30px}
@@ -2023,6 +2023,21 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 </div>
 
 <script>
+// Dropdown overflow fix
+document.querySelectorAll('.nav-menu > li').forEach(function(li){
+  li.addEventListener('mouseenter', function(){
+    var dd = li.querySelector('.dropdown, .mega-dropdown');
+    if (!dd) return;
+    dd.style.left = '0';
+    dd.style.right = 'auto';
+    var rect = dd.getBoundingClientRect();
+    if (rect.right > window.innerWidth) {
+      dd.style.left = 'auto';
+      dd.style.right = '0';
+    }
+  });
+});
+
 // Matbaa slider
 // Infinite loop slider (both directions, seamless)
 (function(){
