@@ -116,9 +116,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['ad_soyad'])) {
             $mail->SMTPAuth   = true;
             $mail->Username   = 'kadikoymatba@gmail.com';
             $mail->Password   = 'ukfr easb pwhv quot'; // https://myaccount.google.com/apppasswords
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = 587;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port       = 465;
             $mail->CharSet    = 'UTF-8';
+            $mail->SMTPOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true]];
 
             $mail->setFrom('kadikoymatba@gmail.com', 'Kadıköy Matbaa');
             $mail->addAddress('kadikoymatba@gmail.com');
@@ -159,9 +160,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['contact_name'])) {
         $mail->SMTPAuth   = true;
         $mail->Username   = 'kadikoymatba@gmail.com';
         $mail->Password   = 'ukfr easb pwhv quot';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port       = 465;
         $mail->CharSet    = 'UTF-8';
+        $mail->SMTPOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true]];
         $mail->setFrom('kadikoymatba@gmail.com', 'Kadıköy Matbaa');
         $mail->addAddress('kadikoymatba@gmail.com');
         $mail->Subject = 'Yeni İletişim Mesajı – ' . ($ckonu ?: 'Konu belirtilmedi');
