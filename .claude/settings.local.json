@@ -23,7 +23,17 @@
       "PowerShell($items = Get-ChildItem -Path \"C:\\\\laragon\\\\www\\\\myproject\\\\Images\" -Recurse; Write-Host \"Total items: $\\($items.Count\\)\"; $items | Where-Object { $_.Name.Length -ne $_.Name.Length } | Select-Object Name | Write-Host \"Done checking\")",
       "PowerShell(& \"C:\\\\laragon\\\\bin\\\\php\\\\php8.3.14\\\\php.exe\" \"C:\\\\laragon\\\\www\\\\myproject\\\\fix_paths.php\")",
       "PowerShell(php \"C:\\\\laragon\\\\www\\\\myproject\\\\fix_paths.php\")",
-      "PowerShell(php \"C:\\\\laragon\\\\www\\\\myproject\\\\make_favicon.php\")"
+      "PowerShell(php \"C:\\\\laragon\\\\www\\\\myproject\\\\make_favicon.php\")",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\ozdur\\\\Downloads\\\\Bayraklar\\\\extract.ps1\")",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\ozdur\\\\Downloads\\\\Bayraklar\\\\extract2.ps1\")",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\ozdur\\\\Downloads\\\\Bayraklar\\\\extract3.ps1\")",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\ozdur\\\\Downloads\\\\Bayraklar\\\\extract4.ps1\")",
+      "Bash(C:\\\\laragon\\\\bin\\\\php\\\\php-8.3.30-Win32-vs16-x64\\\\php.exe *)",
+      "PowerShell(& \"C:\\\\laragon\\\\bin\\\\php\\\\php-8.3.30-Win32-vs16-x64\\\\php.exe\" -l \"C:\\\\laragon\\\\www\\\\myproject\\\\index.php\" 2>&1)",
+      "Bash(Get-Content 'C:\\\\Users\\\\ozdur\\\\Downloads\\\\Bayraklar\\\\output4.txt')",
+      "Bash(Select-String -Pattern \"ATATURK|Atatürk|atatürk|Ulu Önderimiz\" -Context 3,20)",
+      "Bash(Select-Object -First 50)"
     ]
   }
 }

@@ -380,6 +380,11 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 .galeri-grid img{width:100%;height:200px;object-fit:contain;background:#f5f0e8;transition:transform .25s}
 .galeri-grid a:hover img{transform:scale(1.06)}
 
+/* ── BRANDA SUBPAGE LAYOUT ── */
+.branda-sp-layout{overflow:hidden}
+.branda-sp-img{float:right;width:42%;margin:0 0 16px 24px}
+.branda-sp-text .info-box{overflow:hidden}
+
 /* ── LIGHTBOX ── */
 #lightbox-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);
   z-index:9999;align-items:center;justify-content:center;cursor:pointer}
@@ -680,6 +685,14 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
   .service-cards{grid-template-columns:1fr 1fr}
   .page-hero h1{font-size:40px;letter-spacing:3px}
   .header-center{display:none}
+  .navbar{position:relative!important}
+  .nav-menu>li:hover>.dropdown,.nav-menu>li:hover>.mega-dropdown{display:none!important}
+  .mis-feature-icon img{filter:none!important}
+  .branda-main-desc{display:none}
+  .branda-main-wrap{flex-direction:column-reverse}
+  .branda-main-img{flex:none;width:100%}
+  .branda-main-cards{grid-template-columns:1fr}
+  .branda-sp-img{float:none;width:100%;margin:0 0 16px 0}
 }
 @media(max-width:600px){
   .home-hero-new{min-height:auto;padding:12px}
@@ -1093,7 +1106,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
         <h3>Foto Galeri</h3>
         <p class="galeri-group-title">Kalem</p>
         <div class="galeri-grid">
-          <?php $kalem_imgs=['KALEM  00.jpg','KALEM 01.jpg','KALEM 02.jpg','KALEM 03.jpg','KALEM 04.jpg','KALEM 05.jpg'];
+          <?php $kalem_imgs=['kalem  00.jpg','kalem 01.jpg','kalem 02.jpg','kalem 03.jpg','kalem 04.jpg','kalem 05.jpg'];
           foreach($kalem_imgs as $f):
             $src=imgpath('images/promosyon/kalem/'.$f);
           ?><a href="#" onclick="openLightbox('<?= $src ?>');return false;"><img src="<?= $src ?>" alt="Kalem" style="object-fit:contain;background:#f5f0e8"></a><?php endforeach; ?>
@@ -1219,6 +1232,34 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
     'zarf-cesitleri'     => ['images/13 zarf/zarf 1.jpg','images/13 zarf/zarf 2.jpg','images/13 zarf/zarf 3.jpg','images/13 zarf/zarf 4.jpg','images/13 zarf/zarf 5.jpg'],
   ];
   $gi = isset($gi_map[$subpage]) ? array_map('imgpath', $gi_map[$subpage]) : array_fill(0, 8, 'https://placehold.co/600x400?text=Resim');
+  $matbaa_infos = [
+    'amerikan-servis'   => '105 gr / 115 Kuşe kağıt veya 80-90-100 gr 1. Hamur kağıda baskı yapılır',
+    'antetli-kagit'     => 'A4 ebat (21×29,7 cm) 80-90-100-110 gr 1. Hamur kağıda, tek renk veya renkli baskılı',
+    'bloknot-cesitleri' => 'Tutkallı veya spiralli bloknot: A6, A5, A4 ebatlarda; min. 100 cilt üretim.',
+    'brosur-el-ilani'   => 'A5, A7 ve A4 ebat düz ve/veya katlamalı broşür; tasarım desteğimiz vardır.',
+    'cepli-dosya'       => '350 gr mat veya parlak kuşe kağıt, tek yön veya çift taraf baskılı.',
+    'etiket-sticker'    => 'Her ebat sticker basımı; sıvıdan etkilenmeyen, A5 veya A4 ebat baskı.',
+    'karton-canta'      => '210-230 gr Amerikan Bristol kağıt baskı; hazır ipli, mat veya parlak selefonlu.',
+    'kartvizit'         => 'Her firmanın vazgeçilmezi kartvizit; tasarım ve kağıt kalitesini iyi seçmeniz gereklidir.',
+    'magnet'            => 'Buzdolabı reklamlarınız için mıknatıslı etiket; min. 1000 adet üretilir.',
+    'otokopili-evraklar'=> 'A4-A5 ebat; 1+1, 1+2, 1+3 suret seçenekleriyle tek renk veya renkli baskılı.',
+    'poster-afis'       => 'Her ebat afiş üretimi; branda, folyo veya kağıt. Üretim süresi 1-3 gün.',
+    'zarf-cesitleri'    => 'Diplomat zarf, torba zarf ve A5 orta zarf; tek renk veya renkli baskılı, kendinden yapışkanlı.',
+  ];
+  $matbaa_descs = [
+    'amerikan-servis'   => '105 gr / 115 Kuşe kağıt veya 80-90-100 gr 1. Hamur kağıda baskı yapılır<br>Ölçü: 20×30 cm / 28×40 cm<br>2000 adet ve katları şeklinde üretilir.<br>2-5 günde teslim edilir.',
+    'antetli-kagit'     => 'A4 ebat (21×29,7 cm) 80-90-100-110 gr 1. Hamur kağıda, tek renk veya renkli baskılı<br>Extra Baskı: Yaldız, Gofre baskı yapılır<br>500 adet ve katları şeklinde 3-6 günde teslim edilir.<br><br>A4 antetli kağıtlarınız; seminer, toplantılarınız ve teklif evraklarınızı sunmak için idealdir.',
+    'bloknot-cesitleri' => '<strong style="color:var(--gold)">Tutkallı veya Spiralli Bloknot:</strong> A6, A5, A4 tutkallı bloknot; soldan veya üstten spiralli, renkli kapaklı. Tek renk veya renkli baskılı. Min. 100 cilt üretim.<br><br><strong style="color:var(--gold)">Küp Bloknot:</strong> 8×8 cm, 500 yaprak. İç sayfalar 80 gr 1. hamur tek renk. Kutu 300 gr parlak selefonlu renkli baskılı. Min. 250 adet.<br><br>Dikey bloknot çeşitleri de mevcuttur. Tasarım desteğimiz ile üretim yapılmaktadır.<br><br>Bloknot en çok tercih edilen matbaa işlerinin başında gelir. Kendi logonuz ve iletişim bilgilerinizin olduğu bloknotu müşterilerinize dağıtmak uzun süreli reklamınızı sağlayacaktır. İş görüşmelerinizde, fuarlarda bloknot dağıtmak firmanızın insanların aklında kalmasını sağlayacak. 500 yapraklı küp bloknot en çok tercih edilen çeşittir; 8×8 cm olması ve 500 sayfası nedeniyle şirketinizin reklamını çok uzun süre yansıtacaktır.',
+    'brosur-el-ilani'   => 'A5, A7 ve A4 ebat düz ve/veya katlamalı broşür. Tasarım desteğimiz vardır.<br><br>A7 Ebat (10×20 cm) · A5 Ebat (14×20 cm) · A4 Ebat (20×30 cm)<br>105-115-135-150-200-250-300-350 gr Parlak veya Mat Kuşe Kağıt olarak renkli basılabilir. İsteğe bağlı selefon atılabilir. Konik ve katlamalı seçenekler mevcuttur.<br><br>Müşterilerinizin en çok talep ettiği materyal A5, A7 ve A4 ebat broşürlerdir. Küçük ve orta ölçekli şirketler müşteri sayısını ve satış hacmini artırmak için düzenli olarak broşür bastırırlar. Broşür, maliyet olarak en düşük ve herkese ulaşabilen önemli bir reklam aracıdır.<br><br>Döner, Çiğköfte, Cafe, Pideciler, Ev Yemekleri, Su bayileri, Lokantalar, Marketler, Dershaneler, Emlakçılar ve daha birçok sektör broşür dağıtarak müşteri portföylerini artırır.<br><br>Kampanya, açılış, menü gibi birçok sebeple broşür bastırmak isterseniz grafik tasarımdan baskıya, adresinize kargoya kadar hizmetinizdeyiz. Logo, adres, telefon ve broşür içeriğini mail veya WhatsApp üzerinden gönderdiğinizde size en uygun tasarım yapılacak ve sunulacaktır.',
+    'cepli-dosya'       => '350 gr Mat veya Parlak Kuşe Kağıt<br>Tek yön veya Çift Taraf baskılı<br>Kendinden özel cepli Mat veya Parlak selefonlu<br>Ekstra Kabartma Laklı<br>500-1.000 adet üretim yapılmaktadır.<br>Tasarım desteğimiz vardır.<br><br>Tekliflerinizi, A4 ebat broşürlerinizi ve basılı materyallerinizi müşterinize daha kaliteli sunmak için cepli dosya (kapaklı dosya) yaptırmanız şarttır. Cepli dosyanızın tasarımı ve baskısı şirketinizi temsil edeceği için çok önemlidir.<br><br>Cepli dosyanızı; fuar katılımlarınız, toplantılarınız, müşteri ziyaretleriniz ve firma teklifleriniz için kullanabilirsiniz. Logonuz, adresiniz, web siteniz ve mail adresiniz gibi bilgilerinizi bize ulaştırdıktan sonra grafik tasarım kısmını bize bırakın.',
+    'etiket-sticker'    => 'Her ebat sticker basımı; sıvıdan etkilenmeyen, A5 veya A4 ebat baskı.<br><br>Kabartmalı Folyo (Sıvıdan Etkilenmez) · Kağıt Etiket · Altın Yaldızlı · Gümüş Yaldızlı · Forforlu · Özel Kesimli · Şişe/Ürün Etiketi · Şeffaf · Beyaz Boya Baskılı Şeffaf · Garanti Etiketi<br><br>Etiket ve sticker hemen hemen her firmanın kullandığı matbaa ürünüdür. Etiket malzemenizi kullanım alanınıza göre iyi seçmeniz gerekir. Ürün etiketi, kargo etiketi, şişe etiketi, garanti etiketi, sıvıdan etkilenmeyen etiket, özel kesimli etiket gibi onlarca çeşit etiket mevcuttur.<br><br>Bize etiketin hangi alanda gerekli olacağını iletirseniz size en uygun etiket çeşidini sunarız; çünkü her etiket her ürüne yapışmayabilir veya dayanıklı olmayabilir. Açık alanlara veya sıvı teması olan ürünler için sıvıdan etkilenmeyen etiket yapılmalıdır. Ürünlerinizin daha şık görünmesi için yaldızlı veya hologramlı etiket çeşitlerini tercih edebilirsiniz.',
+    'karton-canta'      => '210-230 gr Amerikan Bristol Kağıt Baskı<br>Hazır ipli (Renk Seçilebilir)<br>Mat veya Parlak Selefonlu<br>Ölçüler: 25×37×8 cm · 38×23×9 cm · 17×24×7 cm<br>4 renk baskılı veya laklı, yaldızlı baskı yapılabilir.<br><br>Küçük büyük farketmeksizin özellikle giyim mağazaları ve dershanelerin vazgeçilmez matbaa ürünü karton çantadır. Firmanızın reklamını en iyi yapacak matbaa işleri arasında ilk sıralarda gelir. Müşteri ziyaretlerinizde, fuar katılımlarınızda ve firma tanıtımlarınızda içinde broşürleriniz, bloknotlarınız, logo baskılı kalemleriniz ve kataloglarınız bulunan karton çanta vermek çok etkili olacaktır.<br><br>Karton çanta; kağıt olduğu için pek çöpe atılmayan ve taşıma işinde hafif olduğu için uzun süre reklamınız görünür. Karton çanta tasarımı ve kağıt kalitesi firmanızı tam olarak temsil etmelidir. Çevreci ve geri dönüşümlü bir ürün olduğu için uzun süre kullanılır. Grafik tasarım desteğimizle yanınızdayız.',
+    'kartvizit'         => '250 gr Amerikan Bristol Tek yön baskılı, Parlak selefonlu<br>350 gr Kuşe Çift Yön Baskılı Mat veya Parlak Selefonlu<br>350 gr kağıda özel kesimli kabartma laklı<br>280 ve 560 Tuale (Fantazi) kağıda baskı<br>700 gr sıvama kağıda Kabartma Laklı + Oval veya Özel kesimli<br>800 gr Kağıt Laklı + Altın Yaldızlı<br>Şeffaf Kartvizit üretilebilir.<br>Altın veya Gümüş Yaldızlı. Grafik tasarım desteğimizle.<br><br>Her firmanın yıllardır vazgeçilmezi kartvizit; ilk etapta sizi temsil edeceğinden dolayı tasarım ve kağıt kalitesini iyi seçmeniz gereklidir. Kartvizit kağıdı, selefon uygulaması, kabartma lak veya lak uygulaması, yaldız baskısı, özel veya oval kesim gibi birçok seçenek vardır. Eleman değişmesi, adres ve telefon değişmesi gibi birçok nedenden dolayı şirketlerin kartvizit ihtiyacı sürekli olmaktadır.<br><br>Kartvizit tasarımlarınızın hazır olması, logonuzun beklenmedik zamanlarda lazım olması gibi birçok sebepten uzun süreli ve tecrübeli bir matbaa ile çalışmak firmalar için büyük avantajdır. Tasarım sürecinde; logo, adres, telefonlar, mail, Instagram, X adresi, web sitesi gibi bilgilerinizi bize ulaştırırsanız size en şık kartvizit tasarımı yapılacaktır. Min. 1000 adet basılacak ve istediğiniz özelliklere göre teslim gün sayısı değişecektir.',
+    'magnet'            => 'Buzdolabı reklamlarınız için Magnet (Mıknatıslı Etiket)<br>Min. 1000 adet üretilir.<br>Su, Dönerci, Pideci, Lokanta vs.. gibi birçok sektör için ucuz ve sürekli kullanılan reklam aracıdır.<br>60 Micron olarak basılır ve istenilen şekilde kesim yapılabilir.',
+    'otokopili-evraklar'=> 'A4-A5 ebat yapılır. 1+1 suret, 1+2 suret, 1+3 suret yapılabilir.<br>Tek renk veya renkli baskılıdır.<br>Numaratör eklenebilir.<br>Perferaj atılır.<br>İstenilen koçan yapılabilir.<br><br>Teknik servis formu, Sipariş Fişi, Tahsilat Makbuzu, Asansör Bakım Formu, Sözleşme, Araç Bakım Formu, Depo Çıkış Fişi, Takip Formu ve benzeri evraklar için idealdir.',
+    'poster-afis'       => 'Her ebat Afiş üretimi, Branda, Folyo veya Kağıt...<br>105 gr, 170 gr, 300 gr<br>Kuşe kağıt ve branda afiş<br>33×48 cm / 50×70 cm<br>10-25-50-100-500-1000 adet baskı<br>Üretim: 1-3 gün<br>Anlaşmalı kargo ile gönderim',
+    'zarf-cesitleri'    => 'Düz veya Pencereli Diplomat Zarf (10,5×24 cm) (Fatura Zarfı) · 24×32 cm Torba Zarf · 17×25 cm A5 Orta Zarf. Tek renk veya renkli baskı. Kendinden yapışkanlı kapak. Tasarım desteğimizle.<br><br>Şirketlerin fatura ve antetli teklif kağıtlarını daha şık bir şekilde sunmak için logo baskılı zarf yaptırmanız gereklidir. Firmalarda düzenli kullanılan zarf çeşitleri kısa sürede bittiği için aynı matbaa ile çalışmanız sizin için avantajlıdır.<br><br>En çok tercih edilen ebatlar 10,5×24 cm pencereli ve penceresiz Diplomat zarf ve 24×32 cm torba zarftır. Zarflar genellikle 115 gr 1. hamur kağıda tek renk baskılı veya siparişe göre renkli baskılı olarak üretilebilir.<br><br>Zarf numunelerini ofisimizde görebilir, tasarım yaptırabilirsiniz. İsteğinize göre farklı ölçülerde ve daha kaliteli kağıtlarla zarf yaptırabilirsiniz.',
+  ];
   $gi_contain_all = ['bloknot-cesitleri','brosur-el-ilani','karton-canta'];
   $gi_contain_idx = ['kartvizit' => [0,1,3]];
 ?>
@@ -1228,12 +1269,9 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 <div class="container section">
   <div class="content-wrap">
     <div class="content-main">
-      <div class="info-box"><?= $item_specs[0] ?></div>
-      <div class="product-specs">
-        <?php foreach(array_slice($item_specs,1) as $spec): ?><p>▸ <?= $spec ?></p><?php endforeach; ?>
-      </div>
+      <div class="info-box"><?= $matbaa_infos[$subpage] ?? $item_specs[0] ?></div>
       <p class="product-desc">
-        Kadıköy Matbaa olarak <?= $label ?> ürünlerinizi en yüksek kalitede, uygun fiyatlarla ve hızlı teslimat garantisiyle basıyoruz. Tasarım aşamasından baskı ve kargoya kadar tüm süreci profesyonel ekibimiz yönetmektedir.
+        <?= $matbaa_descs[$subpage] ?? ('Kadıköy Matbaa olarak '.$label.' ürünlerinizi en yüksek kalitede, uygun fiyatlarla ve hızlı teslimat garantisiyle basıyoruz. Tasarım aşamasından baskı ve kargoya kadar tüm süreci profesyonel ekibimiz yönetmektedir.') ?>
       </p>
       <div class="foto-galeri">
         <h3>Foto Galeri</h3>
@@ -1280,8 +1318,8 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
   <h1>Branda Baskı</h1>
 </div>
 <div class="container section" style="padding-top:10px">
-  <p class="product-desc" style="margin-bottom:12px">Kadıköy Matbaa olarak Branda Baskı, Folyo Baskı, Onevision Baskı, Mesh Branda, Germe Tabela ve daha pek çok alanda hizmet vermekteyiz.</p>
-  <div style="display:flex;gap:32px;align-items:flex-start">
+  <p class="product-desc branda-main-desc" style="margin-bottom:12px">Kadıköy Matbaa olarak Branda Baskı, Folyo Baskı, Onevision Baskı, Mesh Branda, Germe Tabela ve daha pek çok alanda hizmet vermekteyiz.</p>
+  <div class="branda-main-wrap" style="display:flex;gap:32px;align-items:flex-start">
     <div style="flex:1;min-width:0">
       <?php
       $branda_card_imgs = [
@@ -1297,7 +1335,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
         'mesh-branda'     => 'Özel delikli yapısıyla rüzgar ve fırtınaya dayanıklı mesh branda; yüksek katlı bina cephelerinde uzun ömürlü ve canlı renkli baskı imkânı sunar.',
       ];
       ?>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div class="branda-main-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
         <?php foreach($branda_items as $slug=>$label):
           $bcimg = $branda_card_imgs[$slug] ?? '';
           $bcdesc = $branda_card_descs[$slug] ?? 'Kaliteli malzeme ve profesyonel ekibimizle hızlı üretim ve teslimat.';
@@ -1313,7 +1351,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
         <?php endforeach; ?>
       </div>
     </div>
-    <div style="flex:0 0 42%;min-width:0">
+    <div class="branda-main-img" style="flex:0 0 42%;min-width:0">
       <img src="<?= imgpath('images/branda/branda/branda ana ekran.jpg') ?>" alt="Branda Baskı UV" style="width:100%;height:auto;display:block;border:2px solid rgba(200,137,42,.35);border-radius:4px">
     </div>
   </div>
@@ -1323,27 +1361,23 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
   $blabel_b = $branda_items[$subpage] ?? ucfirst(str_replace('-',' ',$subpage));
   $branda_content = [
     'branda-baski' => [
-      'info' => '50x70 / 70x100 / 100x100 ve istediğiniz tüm ölçülerde baskı yapılabilmektedir.',
-      'specs' => ['Kiralık, Satılık, Açılış, Kampanya brandaları', 'Çin &amp; Avrupa\'dan Branda tedariki', 'UV baskı teknolojisi ile uzun ömürlü görsel', 'Teslim süresi ort. 1-2 gün'],
-      'desc' => '<strong style="color:var(--gold)">Branda baskı (vinil baskı),</strong> PVC esaslı dayanıklı bir malzeme olan vinil üzerine dijital baskı makineleriyle yapılan, dış mekan hava koşullarına (yağmur, güneş, rüzgar) son derece dayanıklı bir reklam ve tanıtım yöntemidir. Genellikle afiş, pankart, cephe kaplama ve tabela olarak kullanılır.<br><br>Branda baskı konusunda Çin &amp; Avrupa branda baskı + tasarımı + montajı + adrese teslim hizmeti veriyoruz...<br><br>Hazır olarak satılan brandaların üzerlerine istenilen şekil ve renkte baskı yapılması için yılların verdiği deneyim ve tecrübeyle müşterilerine hizmet vermeye devam eden firmamız branda baskı konusunda en çok tercih edilen firma olmaktadır. İstenilen puntolarda istenilen renk ve boyutlarda brandalar üzerine istenilen her türlü baskı yapılabilmektedir. Uzman ekip ve son teknoloji ürünler kullanan firmamızla istediğiniz her türlü baskı için iletişime geçebilir ve hızlı bir şekilde sonuç alabilirsiniz.<br><br>Kiralık, Satılık, Açılış, Kampanya brandaları / Çin &amp; Avrupa\'dan Branda — Emlakçılara ve yüksek m2 işlerinize özel fiyat verilir.<br><br>Her ebat (vinil) Branda baskı ve tasarım hizmeti veriyoruz. (Büyük ebat brandalarda baskının güzel çıkması için deneyimli grafiker tarafından yapılması gereklidir.)<br><br>Rüzgara dayanıklı branda "mesh" olarak adlandırılır ve min. ölçüsü 3 m olmalıdır. Büyük ebat baskıda uzun süre brandanızın yırtılmaması için mesh branda tercih etmelisiniz.<br><br>Baskılı brandalarımız dış mekanda yağmur, suya vs. şartlara karşı dayanıklıdır. Uzun soluklu branda baskınız için UV baskı teknolojisi ile brandadaki görseliniz çok daha uzun süre solmayacaktır.<br><br>5 metreye kadar tek parça branda baskı makinemiz mevcuttur. Baskınız bittikten sonra ip ile asabilmeniz için ve kolay yırtılmaması için kenarlarına dikiş ve kapsül atmaktayız.<br><br>Baskılarımız 4 renk CMYK olarak kaliteli olarak basılmaktadır. İsteğinize göre İç Mekan makinemizde fotoğraf kalitesinde baskı alabilirsiniz.<br><br>Teslim süremiz ort. 1-2 gündür. Fiyatlandırma ölçünüze ve istediğiniz adete göre hesaplanır.<br><br>Büyük ebat brandalarınız için teslimat ve asma hizmetimiz vardır. (Ücretli)<br><br>AVM Mağaza tadilatlarınızda branda kaplaması uzmanlık alanımızdır... İnstagram sayfamızda yaptığımız işleri görebilirsiniz.',
+      'info' => 'Dış mekan kullanıma dayanıklı baskılı branda hizmet... (Dikiş ve Kapsül ile...)',
+      'desc' => '5 METRE TEK PARÇA branda baskımız vardır…<br><br>Anlaşmalı kargo ile tüm Türkiye\'ye gönderim sağlıyoruz…<br><br>Her ebat (vinil) Branda baskı ve tasarım hizmeti veriyoruz. (Büyük ebat brandalarda baskının güzel çıkması için deneyimli grafiker tarafından yapılması gereklidir.)<br><br>Baskılı brandalarımız dış mekanda yağmur, suya vs.. şartlara karşı dayanıklıdır. Uzun soluklu branda baskınız için UV baskı teknolojisi ile brandadaki görseliniz çok daha uzun süre solmayacaktır.<br><br>Baskılarımız 4 renk CMYK olarak kaliteli olarak basılmaktadır. İsteğinize göre İç Mekan makinemizde fotoğraf kalitesinde baskı alabilirsiniz.<br><br>50×70 cm / 70×100 cm / 100×100 cm veya istediğiniz tüm ölçülerde baskı yapılabilmektedir.<br><br>Teslim süremiz ort. 1-2 gündür. Fiyatlandırma ölçünüze ve istediğiniz adete göre hesaplanır.',
     ],
     'folyo-baski' => [
-      'info' => 'Folyo baskılarımızda 1. sınıf folyo markaları kullanmaktayız.',
-      'specs' => ['Folyo Çeşitleri: Şeffaf, Buzlu, Renkli, Beyaz', 'Cephe, cam vitrin, tabela ve yönlendirmeler', 'Araç kaplamaları (cast tipi)', 'Uygulama hizmetide verilmektedir'],
-      'desc' => '<strong style="color:var(--gold)">Folyo sticker baskı,</strong> PVC bazlı ve kendinden yapışkanlı bir malzeme olan folyo üzerine dijital baskı yapılmasıyla elde edilen reklam ve dekorasyon ürünüdür. Suya, neme ve dış hava koşullarına dayanıklı yapısı sayesinde hem iç hem de dış mekanlarda geniş bir kullanım alanına sahiptir.<br><br><strong style="color:var(--gold);font-size:26px">Kullanım Alanları ve Avantajları</strong><br><br><strong style="color:var(--gold)">Reklam ve Tanıtım:</strong> Mağaza vitrinlerindeki "İndirim" ve "Kampanya" yazıları, fuar standları ve kurumsal markalama çalışmaları için idealdir.<br><strong style="color:var(--gold)">Endüstriyel Etiketleme:</strong> Gıda, içecek, kozmetik ve ilaç ambalajlarında ürün bilgisi ve dekorasyon amaçlı kullanılır.<br><strong style="color:var(--gold)">Araç Kaplama:</strong> "Cast folyo" adı verilen özel türler, araçların girintili çıkıntılı yüzeylerine ısı yardımıyla uygulanarak araç giydirme işlemlerinde kullanılır.<br><strong style="color:var(--gold)">İç Dekorasyon:</strong> Duvar, cam, kapı ve mobilya kaplamalarında, cam yüzeylerde ise yönlendirme işaretlerinde sıkça tercih edilir.',
+      'info' => 'Sıvıya dayanıklı PVC yapışkan reklam ürünüdür. Vitrin camları için idealdir.',
+      'desc' => '<strong style="color:var(--gold);font-size:26px">Kullanım Alanları</strong><br><br>Folyo baskı, geniş bir uygulama yelpazesine sahiptir:<br><br><strong style="color:var(--gold)">Reklam ve Tanıtım:</strong> Mağaza vitrinleri ("İndirim", "Kampanya" yazıları), tabela yüzeyleri ve yönlendirme levhaları.<br><strong style="color:var(--gold)">Araç Giydirme:</strong> Şirket araçlarının logolarla veya tam kaplama ile reklam mecrasına dönüştürülmesi.<br><strong style="color:var(--gold)">İç Mekan Dekorasyonu:</strong> Ofis cam bölmeleri, duvar kaplamaları ve mobilya yenileme işlemleri.<br><strong style="color:var(--gold)">Etiket ve Sticker:</strong> Küçük ebatlı ürün etiketleri veya dekoratif stickerların üretimi.<br><br><strong style="color:var(--gold);font-size:26px">Uygulama ve Dayanıklılık</strong><br><br>Baskının ömrünü uzatmak için dış mekan uygulamalarında laminasyon (koruyucu mat veya parlak kaplama) tercih edilir; bu işlem güneş ışığı ve sürtünmeye karşı direnci artırır. Uygulama yapılacak yüzeyin tozdan ve kirden tamamen arındırılmış, pürüzsüz olması yapışkanın kalıcılığı için kritiktir.<br><br>Sıvıya dayanıklı özel kesim sticker baskımız vardır.',
     ],
     'onevision-baski' => [
-      'info' => 'Üstün kalitede malzemeler kullanılarak üretimi yapılan ve başarılı bir görüntüye sahip onevision baskı, dış etkenlere karşı son derece dayanıklıdır.',
-      'specs' => ['Cam yüzeylerde kullanım', 'Dışarıdan içerisi görünmez', 'Dış etkenlere dayanıklı', 'Her sektörde tercih edilebilir'],
-      'desc' => '<strong style="color:var(--gold)">ONE WAY VISION</strong> Halk arasında "One Vision" veya "Delikli Folyo" olarak bilinir. Cam yüzeylere uygulanan, dışarıdan bakıldığında reklam görselinin göründüğü, içeriden bakıldığında ise dışarının sanki hafif bir film varmış gibi seçilebildiği bir dijital baskı türüdür.<br><br><strong style="color:var(--gold);font-size:26px">Temel Özellikleri ve Avantajları</strong><br><br><strong style="color:var(--gold)">Tek Yönlü Görüş:</strong> Camın dış tarafına uygulanan bu malzeme, üzerindeki mikro delikler sayesinde içeriden dışarıyı görmenizi sağlar.<br><strong style="color:var(--gold)">Reklam ve Estetik:</strong> Binaların dış cephe camlarını, mağaza vitrinlerini veya araç camlarını devasa bir reklam alanına dönüştürür.<br><strong style="color:var(--gold)">Işık Geçirgenliği:</strong> İç mekana güneş ışığının girmesine izin verir ancak parlaklığı hafifçe kırar.<br><strong style="color:var(--gold)">Gizlilik:</strong> Gündüzleri dışarıdan içerisi görünmediği için belirli bir mahremiyet sağlar.<br><br><strong style="color:var(--gold);font-size:26px">Kullanım Alanları</strong><br>Mağaza ve dükkan vitrinleri<br>Plaza ve iş merkezlerinin dış cepheleri<br>Şirket araçlarının veya ticari taşıtların camları<br>Ofis içi cam bölmeler',
+      'info' => 'Cam yüzeylere uygulanır. Özelliği: dışarı görünümü sağlanır, dışardan sadece sizin görseliniz görünür. Gündüz içeriyi göstermez...',
+      'desc' => '<strong style="color:var(--gold)">Dijital Baskı ve Reklamcılık (One Way Vision)</strong><br><br>Sektörde genellikle "delikli folyo" olarak bilinen bu malzeme, binaların veya araçların cam yüzeylerine reklam amacıyla uygulanır. Temel özelliği şudur:<br><br><strong style="color:var(--gold)">Dışarıdan:</strong> Sadece basılan reklam görseli görünür, içerisi görünmez.<br><strong style="color:var(--gold)">İçeriden:</strong> Sanki camda hiçbir şey yokmuş gibi dışarısı rahatça izlenebilir ve gün ışığı içeri girmeye devam eder.<br><br>Tasarım desteğimiz vardır…',
     ],
     'mesh-branda' => [
-      'info' => 'Sürekli değişen hava şartlarına karşı dayanıklı olan ürünler, güneş ışığına da etkili dayanıklılık göstermektedir.',
-      'specs' => ['Rüzgar ve fırtınaya dayanıklı', 'Minimum ölçü: 3 m', 'Özel delikli sistem', 'Yüksek katlı bina cephelerine uygun'],
-      'desc' => '<strong style="color:var(--gold)">Mesh Branda,</strong> üzerinde çok küçük delikler bulunan özel bir branda türüdür. Genelde büyük dış mekan reklamlarında kullanılır.<br><br>Normal branda rüzgarı tamamen tutar yelken gibi davranır. Mesh branda ise delikli olduğu için rüzgar içinden geçer.<br><br><strong style="color:var(--gold);font-size:26px">Temel Özellikleri</strong><br>✔ Rüzgar geçirgen<br>✔ Hafif ve dayanıklı<br>✔ İçeriden dışarısı görülebilir<br><br><strong style="color:var(--gold);font-size:26px">Kullanım Alanları</strong><br>✔ Cephe kaplama<br>✔ İnşaat iskele kaplamaları &amp; Bina cephe reklamları<br>✔ Dev afişler (AVM, Plaza, Otel)',
+      'info' => 'Rüzgara daha dayanıklı bir üründür. Deliklerinden hava akışı olduğu için çabuk yırtılmaz.',
+      'desc' => 'Büyük ebat ve rüzgar alan mekanlara asmak için MESH (DELİKLİ) BRANDA tercih edilmelidir.<br><br>Kampanya, Açılış, Tadilat, Satılık, Kiralık vs.. işleriniz için idealdir.<br><br>UV baskı ve içten kolon dikiş ile uzun süre solma yapmaz ve kolay yırtılmaz.<br><br>5 metre tek parça MESH branda baskımız vardır.<br><br>Tasarım desteğimiz vardır.<br><br>Anlaşmalı kargo ile gönderim sağlanır.',
     ],
   ];
-  $bcd = $branda_content[$subpage] ?? ['info'=>'Kaliteli hizmet garantisiyle üretim yapılmaktadır.','specs'=>['Hızlı teslimat','Uygun fiyat garantisi'],'desc'=>'Kadıköy Matbaa olarak '.$blabel_b.' konusunda hizmet vermekteyiz.'];
+  $bcd = $branda_content[$subpage] ?? ['info'=>'Kaliteli hizmet garantisiyle üretim yapılmaktadır.','desc'=>'Kadıköy Matbaa olarak '.$blabel_b.' konusunda hizmet vermekteyiz.'];
   $branda_gallery_images = [
     'branda-baski' => [
       'images/branda/branda/branda baski/branda 1.jpg',
@@ -1394,38 +1428,18 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
         'onevision-baski' => imgpath('images/branda/branda/one vision.jpeg'),
         'mesh-branda'     => imgpath('images/branda/branda/mesh.jpeg'),
       ];
-      $specs_beside_img = in_array($subpage, ['mesh-branda','onevision-baski']);
       ?>
-      <?php if($specs_beside_img): ?>
-      <div class="info-box"><?= $bcd['info'] ?></div>
-      <div style="display:flex;gap:24px;align-items:center">
-        <div style="flex:0 0 48%;min-width:0">
-          <div class="product-specs">
-            <?php foreach($bcd['specs'] as $spec): ?><p>▸ <?= $spec ?></p><?php endforeach; ?>
-          </div>
-        </div>
+      <div class="branda-sp-layout">
         <?php if(isset($subpage_img_map[$subpage])): ?>
-        <div style="flex:1">
+        <div class="branda-sp-img">
           <img src="<?= $subpage_img_map[$subpage] ?>" alt="<?= $blabel_b ?>" style="width:100%;height:auto;display:block;border:2px solid rgba(200,137,42,.35)">
         </div>
         <?php endif; ?>
-      </div>
-      <?php else: ?>
-      <div style="display:flex;gap:24px;align-items:stretch">
-        <div style="flex:0 0 48%;min-width:0">
+        <div class="branda-sp-text">
           <div class="info-box"><?= $bcd['info'] ?></div>
-          <div class="product-specs">
-            <?php foreach($bcd['specs'] as $spec): ?><p>▸ <?= $spec ?></p><?php endforeach; ?>
-          </div>
+          <p class="product-desc" style="margin-top:12px"><?= $bcd['desc'] ?></p>
         </div>
-        <?php if(isset($subpage_img_map[$subpage])): ?>
-        <div style="flex:1;display:flex;align-items:flex-start">
-          <img src="<?= $subpage_img_map[$subpage] ?>" alt="<?= $blabel_b ?>" style="width:100%;height:auto;display:block;border:2px solid rgba(200,137,42,.35)">
-        </div>
-        <?php endif; ?>
       </div>
-      <?php endif; ?>
-      <p class="product-desc"><?= $bcd['desc'] ?></p>
       <div class="foto-galeri">
         <h3>Foto Galeri</h3>
         <div class="galeri-grid">
@@ -1504,53 +1518,28 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
   $blabel = $bayrak_items[$subpage] ?? ucfirst(str_replace('-',' ',$subpage));
   $bayrak_data = [
     'ataturk-bayraklari' => [
-      'specs' => [
-        'Kumaş: 125 gr Raşel — İstenilen ebatta üretim yapılır',
-        '29 Ekim, 10 Kasım, 23 Nisan, 19 Mayıs ve 30 Ağustos\'ta yaygın kullanım',
-        'Tek renk veya çok renkli fotoğraf kalitesinde dijital baskı',
-        'Hızlı teslimat, toplu sipariş avantajları mevcuttur',
-      ],
-      'desc' => 'Ulu Önderimiz ve Ebedi Başkomutanımız Mustafa Kemal Atatürk\'ün portresinin veya siluetinin yer aldığı bayraklar, milli duyguların en güçlü simgelerinden biridir. Atatürk Bayrakları; Cumhuriyet Bayramı, Atatürk\'ü Anma Günü ve diğer ulusal bayramlarda yaygın olarak kullanılmaktadır. Kadıköy Matbaa olarak istenilen ebatta, en yüksek kumaş ve baskı kalitesiyle üretim yapıyoruz.',
+      'info' => 'Ulu Önderimiz ve Ebedi BAŞKOMUTANIMIZ Mustafa Kemal ATATÜRK\'ün portresinin veya siluetinin yer aldığı bayraklar..',
+      'desc' => '"Atatürk bayrakları" denince genellikle Mustafa Kemal Atatürk\'ün portresinin veya siluetinin yer aldığı bayraklar kastedilir. Bu bayraklar, Türkiye Cumhuriyeti\'nin kurucusu Mustafa Kemal Atatürk\'e olan saygıyı ve sevgiyi ifade etmek amacıyla kullanılır.<br>İstenilen ebatta raşel kumaşa baskı yapılır…<br><br>Atatürk bayrakları özellikle şu zamanlarda sıkça kullanılır:<br>29 Ekim Cumhuriyet Bayramı<br>10 Kasım Atatürk\'ü Anma Günü<br>23 Nisan, 19 Mayıs, 30 Ağustos gibi milli bayramlarda<br>Okullarda, kamu binalarında, evlerde, stadyumlarda, mitinglerde veya törenlerde<br><br>Kimi kurumlar bu bayrakları binalarına asarak veya tören alanlarına yerleştirerek Atatürk\'e saygılarını gösterir.',
     ],
     'gonder-bayragi' => [
-      'specs' => [
-        'Standart Ölçü: 75×105 cm — Özel ölçü üretim yapılabilir',
-        'Kumaş: 125 gr Raşel',
-        'Kenarlar overlok dikişiyle güçlendirilmiştir',
-        'Renk haslığı yüksek mürekkep — solmaya karşı dayanıklı',
-      ],
-      'desc' => 'Gönder Bayrakları, bina cephelerinde, meydan ve parklarda, etkinlik alanlarında kullanılmak üzere gönder aparatıyla birlikte üretilen dayanıklı bayraklardır. Ülke Gönder Bayrakları genellikle 125 gr raşel kumaşa basılmaktadır. Standart ölçü 75×105 cm olmakla birlikte müşteri talebine göre özel ölçülerde de üretim yapılmaktadır. Kadıköy Matbaa olarak uzun ömürlü ve canlı renkli gönder bayraklarını hızlı teslimat garantisiyle sunuyoruz.',
+      'info' => 'Ülke Gönder Bayrakları genellikle 125 gr raşel kumaşa basılmaktadır.',
+      'desc' => 'Ülke Gönder Bayrakları genellikle 125 gr raşel kumaşa basılmaktadır. Baskı aynı netlikte arka yüzden de okunmaktadır, fakat baskı bir yüzünden düz, bir yüzünden ters okunmaktadır.<br>Gönder bayrakları nadiren isteğe göre çift kat, çift yüzde üretilebilmektedir. Baskı her iki yüzde de düz okunmaktadır. Çift kat çift yüz bayraklar ağır oldukları için dalgalanması az olup yıpranması daha hızlı olmaktadır. Bu nedenle çok tercih edilmemektedir.<br>Gönder Bayraklarında tercihe göre Raşel, Saten ve Alpaka kumaşlar kullanılmaktadır.<br>Akma, solma, yıkama ve ütüye karşı garantilidir<br>Genellikle 75×105 cm ebatta üretilir. İsteğe göre özel ölçüde yapılabilir.',
     ],
     'kirlangic-bayrak' => [
-      'specs' => [
-        'Ölçü: 50×75 cm\'den 75×200 cm\'e kadar — Özel ebat mümkün',
-        'Kumaş: 125 gr Raşel',
-        'Tek veya çift taraflı baskı seçeneği mevcuttur',
-        'Kurumlar, etkinlikler, fuarlar ve açılışlar için idealdir',
-      ],
-      'desc' => 'Kırlangıç bayrak; uçlarının çatal şeklinde kesilmesiyle karakterize edilen, kurumlar, etkinlikler, açılışlar, fuarlar ve dış mekan tanıtımlarında sıklıkla kullanılan özel bir bayrak modelidir. Sivri uçlu ve şık görünümüyle kurumsal kimlik çalışmalarında tercih edilen kırlangıç bayraklar, farklı ebatlarda üretilmekte olup kalite ve renk doygunluğu açısından en yüksek standartlar uygulanmaktadır.',
+      'info' => 'Kırlangıç bayrak, genellikle kurumlar, etkinlikler, açılışlar, fuarlar ve dış mekan tanıtımlarında kullanılan özel bir bayrak modelidir.',
+      'desc' => 'Kırlangıç bayrak, genellikle kurumlar, etkinlikler, açılışlar, fuarlar ve dış mekan tanıtımlarında kullanılan özel bir bayrak modelidir. Adını, alt ucunun "V" şeklinde kesilmiş olmasından alır; bu şekil kırlangıç kuyruklarına benzediği için "kırlangıç bayrak" denir.<br>90, 120 veya 140 gr Raşel Kumaş Baskı…<br>Ölçüler:<br>50×75 cm &nbsp;&nbsp;&nbsp; 75×100 cm<br>50×100 cm &nbsp;&nbsp; 75×150 cm<br>50×150 cm &nbsp;&nbsp; 75×200 cm',
     ],
     'masa-bayragi' => [
-      'specs' => [
-        'Aparat: T Masa Bayrağı — Tekli, İkili veya Üçlü seçenek',
-        'Kumaş: Raşel',
-        'Yüksek çözünürlüklü dijital baskı',
-        'Kurum, dernek, okul ve devlet kurumları için uygundur',
-      ],
-      'desc' => 'Masa bayrakları; kurum, kuruluş, dernek, okul veya devlet kurumlarında toplantı masalarında, konferanslarda ve tören alanlarında kullanılmaktadır. Tekli, ikili ve üçlü T tipi metal aparat üzerine monte edilen masa bayrakları, küçük boyutları ve özenli işçilikleriyle kurumsal temsil niteliği taşır. Raşel kumaş üzerine yüksek çözünürlüklü dijital baskı uygulanmakta olup bireysel ve toplu sipariş seçenekleri mevcuttur.',
+      'info' => 'Masa bayrağı; kurum, kuruluş, dernek, okul veya devlet kurumlarında resmî ya da temsilî amaçlarla kullanılır.',
+      'desc' => 'Masa bayrağı; kurum, kuruluş, dernek, okul veya devlet kurumlarında resmî ya da temsilî amaçlarla masalar üzerinde kullanılan küçük bayraklara verilen isimdir. Hem estetik hem de kurumsal bir kimlik göstergesi olarak kullanılır.<br>Tekli, İkili ve Üçlü olarak üretilebilir.<br>T Masa Bayrağı üretimimiz vardır.<br>Raşel kumaş baskılır.',
     ],
     'yelken-olta-bayrak' => [
-      'specs' => [
-        'Kumaş Ölçü: 75×300 cm — Kumaş: 90 gr Raşel',
-        'Direk: 4 m Demir Direk',
-        'Sabitleyici: 19 L Beton Bidon',
-        'Reklam, tanıtım ve yönlendirme amaçlı kullanım için idealdir',
-      ],
-      'desc' => 'Yelken (Olta) bayraklar, reklam, tanıtım ve yönlendirme amacıyla kullanılan, rüzgarla birlikte dalgalanarak dikkat çeken promosyon ürünleridir. Mağaza önleri, fuar ve etkinlik alanları, otoparklar ve açık alan organizasyonlarında yaygın olarak tercih edilmektedir. Set içeriğinde kumaş, 4 m demir direk ve 19 litre beton bidon sabitleyici yer almakta olup dört mevsim dış mekana uygun malzeme ile üretilmektedir.',
+      'info' => 'Yelken bayrak; reklam, tanıtım ve yönlendirme amacıyla kullanılan, rüzgârla dalgalanarak dikkat çeken bir promosyon ürünüdür.',
+      'desc' => 'Yelken bayrak, genellikle reklam, tanıtım ve yönlendirme amacıyla kullanılan, rüzgârla birlikte dalgalanarak dikkat çeken bir promosyon ürünüdür. Adını, şekil olarak bir yelkeni andırmasından alır. Hafif, taşınabilir ve dış mekân koşullarına dayanıklı olduğu için etkinliklerde, fuarlarda, mağaza önlerinde, dükkan ve kurum girişlerinde sıkça tercih edilir.<br>Ölçü: 75×300 cm<br>Bidon 19 L<br>Direk: 4 m Demir<br>Kumaş: 90 gr Raşel',
     ],
   ];
   $bd = $bayrak_data[$subpage] ?? [
-    'specs' => ['Yüksek kaliteli Raşel kumaş', 'Hızlı teslimat', 'Uygun fiyat garantisi'],
+    'info' => 'Kadıköy Matbaa olarak yüksek kaliteli kumaş ve baskıyla üretim yapıyoruz.',
     'desc'  => 'Kadıköy Matbaa olarak ' . $blabel . ' ürünlerinizi en yüksek kalitede, uygun fiyatlarla ve hızlı teslimat garantisiyle basıyoruz.',
   ];
   $bayrak_gallery_images = [
@@ -1593,10 +1582,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 <div class="container section">
   <div class="content-wrap">
     <div class="content-main">
-      <div class="info-box"><?= $bd['specs'][0] ?></div>
-      <div class="product-specs">
-        <?php foreach(array_slice($bd['specs'],1) as $spec): ?><p>▸ <?= $spec ?></p><?php endforeach; ?>
-      </div>
+      <div class="info-box"><?= $bd['info'] ?? $bd['specs'][0] ?></div>
       <p class="product-desc">
         <?= $bd['desc'] ?>
       </p>
@@ -1680,32 +1666,27 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
   $flabel = $fuar_items[$subpage] ?? ucfirst(str_replace('-',' ',$subpage));
   $fuar_content = [
     'back-drop' => [
-      'info' => 'Ölçüler: 100×230 / 150×230 / 200×230 / 250×230 / 300×230 cm ve daha büyük ebatlarda üretim.',
-      'specs' => ['Portatif ve taşıma çantalı', 'LightBox kumaş baskı — ışıklı üretim seçeneği mevcut', 'Tek kişi tarafından kurulabilir, çift yüz baskılı üretilebilir', 'İstanbul ve Ankara için adrese teslimat ve kurulum yapılır'],
-      'desc' => 'Back Drop; fuar, açılış, kongre, davet, konferans, etkinlik, sergi ve tüm organizasyonlarınız için yeni nesil stand çözümüdür. Portatif yapısı ve taşıma çantasıyla her mekana kolayca taşınabilir. LightBox kumaş baskı seçeneğiyle görselleriniz en etkileyici şekilde sergilenir. Tek kişi tarafından kısa sürede kurulabilir, istenildiğinde çift yüz baskılı olarak üretilebilir. Kadıköy Matbaa olarak tasarım desteği ile birlikte hızlı üretim ve teslimat sunuyoruz.',
+      'info' => 'Fuar, etkinlik ve basın toplantıları için profesyonel backdrop stand sistemleri. Çabuk ve kolay kurulum... ŞIK GÖRÜNÜM...',
+      'desc' => 'FUAR, AÇILIŞ, KONGRE, DAVET, KONFERANS, ETKİNLİK, SERGİ VE tüm organizasyonları için YENİ NESİL STAND…<br><br><strong style="color:var(--gold)">ÖLÇÜLER</strong><br>100×230 cm / 150×230 cm / 200×230 cm / 250×230 cm / 300×230 cm / 400×230 cm / 500×230 cm / 600×230 cm<br><br>▸ Portatiftir.<br>▸ Tasarım desteğimiz vardır.<br>▸ Taşıma Çantalıdır.<br>▸ LightBox Kumaş baskıdır.<br>▸ Işıklı üretilebilir.<br>▸ Tek kişi tarafından kurulabilir.<br>▸ Çift yüz baskılı üretilebilir.<br>▸ Modern ŞIK görünüm.<br>▸ İstenilen ebatta üretim.<br><br><strong style="color:var(--gold)">İSTANBUL ve ANKARA için</strong><br>▸ Adrese teslimat ve kurulum yapılır.<br>▸ (Teslimat ve Kurulum ücreti eklenir.)',
     ],
     'forex-dekota' => [
-      'info' => 'Forex (Dekota) baskı; PVC esaslı, sert, hafif ve dayanıklı levhalar üzerine yapılan dijital baskıdır.',
-      'specs' => ['Kalınlık seçenekleri: 3 mm, 5 mm (1-20 mm arası)', 'İç ve dış mekan kullanımına uygun, suya dayanıklı', 'AVM, mağaza vitrinleri, fuar ve etkinlik tabelaları için ideal', 'UV baskı ile doğrudan yüzeye işleme veya folyo kaplama'],
-      'desc' => 'Forex baskı (diğer adıyla Dekota), PVC esaslı sert, hafif ve dayanıklı levhalar üzerine yapılan bir dijital baskı türüdür. Reklam, tanıtım ve dekorasyon dünyasında sıkça tercih edilen bu yöntem, pürüzsüz yüzeyi ve taşınabilir yapısıyla öne çıkar.<br><br>Malzeme yapısı olarak sert PVC köpükten üretilir; fotobloğa göre çok daha dayanıklı ve suya karşı dirençlidir. Hem iç mekan (mağaza görselleri, tablolar) hem de dış mekan (tabelalar, yönlendirme levhaları) için uygundur. Genellikle 3 mm ve 5 mm kalınlıklar tercih edilse de, 1 mm\'den 20 mm\'ye kadar seçenekleri mevcuttur.<br><br>AVM ve mağaza vitrinlerinde hafifliği sayesinde asılarak veya yapıştırılarak kolayca sergilenir. Fuar ve etkinliklerde tanıtım panoları, stand giydirmeleri ve bilgilendirme tabelaları için idealdir.',
+      'info' => 'Forex baskı (diğer adıyla Dekota), PVC esaslı sert, hafif ve dayanıklı levhalar üzerine yapılan bir dijital baskı türüdür.',
+      'desc' => 'Forex baskı (diğer adıyla Dekota), PVC esaslı sert, hafif ve dayanıklı levhalar üzerine yapılan bir dijital baskı türüdür. Reklam, tanıtım ve dekorasyon dünyasında sıkça tercih edilen bu yöntem, pürüzsüz yüzeyi ve taşınabilir yapısıyla öne çıkar.<br><br><strong style="color:var(--gold);font-size:26px">Forex Baskının Öne Çıkan Özellikleri</strong><br><br><strong style="color:var(--gold)">Malzeme Yapısı:</strong> Sert PVC köpükten üretilir; fotobloğa göre çok daha dayanıklı ve suya karşı dirençlidir.<br><strong style="color:var(--gold)">Kullanım Alanı:</strong> Hem iç mekan (mağaza görselleri, tablolar) hem de dış mekan (tabelalar, yönlendirme levhaları) için uygundur.<br><strong style="color:var(--gold)">Teknik Özellikler:</strong> Genellikle 3 mm ve 5 mm kalınlıklar tercih edilse de, 1 mm\'den 20 mm\'ye kadar seçenekleri mevcuttur.<br><strong style="color:var(--gold)">Uygulama Yöntemi:</strong> Görseller doğrudan UV baskı ile yüzeye işlenebilir veya folyo üzerine basıldıktan sonra forex levhaya sıvanabilir.<br><br><strong style="color:var(--gold);font-size:26px">Popüler Kullanım Alanları</strong><br><br><strong style="color:var(--gold)">AVM ve Mağaza Vitrinleri:</strong> Hafifliği sayesinde asılarak veya yapıştırılarak kolayca sergilenir.<br><strong style="color:var(--gold)">Fuar ve Etkinlikler:</strong> Tanıtım panoları, stand giydirmeleri ve bilgilendirme tabelaları için idealdir.',
     ],
     'reklam-dubasi' => [
       'info' => 'Reklam dubası; işletmelerin kapı önlerinde, kaldırımlarda veya otopark alanlarında tanıtım ve park düzenini sağlamak amacıyla kullanılır.',
-      'specs' => ['Su veya kum doldurulabilen ağırlık haznesi', 'Rüzgar ve dış hava koşullarına dayanıklı', 'Portatif ve taşınabilir yapı', 'Hızlı üretim ve teslimat'],
       'desc' => 'Reklam dubası, işletmelerin kapı önlerinde, kaldırımlarda veya otopark alanlarında hem tanıtım yapmak hem de park düzenini sağlamak amacıyla kullandığı portatif reklam araçlarıdır. Genellikle su veya kum doldurulabilen ağırlık hazneleri sayesinde rüzgara ve dış hava koşullarına dayanıklıdırlar. Mağaza önleri, lokanta girişleri, etkinlik alanları ve otoparklar için ideal bir reklam çözümüdür. Kadıköy Matbaa olarak yüksek baskı kalitesiyle reklam dubalarınızı üretiyor ve teslim ediyoruz.',
     ],
     'roll-up-banner' => [
-      'info' => 'Roll Up Banner; 85×200 / 100×200 / 150×200 / 200×200 / 200×300 cm ebatlarında üretilebilir.',
-      'specs' => ['Kendinden sarmalı mekanizma — kurulum 2-3 dakika', 'Fuar, etkinlik ve mağaza tanıtımları için ideal', 'Tasarım desteği mevcuttur', 'Anlaşmalı kargo ile Türkiye\'nin her yerine gönderim'],
-      'desc' => 'Roll Up Banner, fuar sunumlarınız için sıklıkla kullanılan etkin bir reklam aracıdır. Sarmalı mekanizması sayesinde kurulumu yalnızca 2-3 dakika sürmektedir. Taşınabilir yapısıyla her mekana kolayca götürülebilir. 85×200 cm\'den 200×300 cm\'e kadar farklı ebatlarda üretilebilir. Kadıköy Matbaa olarak tasarım desteği ile birlikte hızlı üretim sunuyor, anlaşmalı kargo ortaklarımız aracılığıyla Türkiye\'nin her yerine gönderim yapıyoruz.',
+      'info' => 'Taşınabilir, şık ve etkili sunum çözümü: Roll-up banner tasarım ve baskısı. Kendinden sarmalı poster ile fuarlarınız için büyük kolaylık...',
+      'desc' => 'Genellikle fuar sunumlarınız için kullanılan bir reklam aracıdır.<br><br>85×200 cm / 100×200 cm / 150×200 cm / 200×200 cm / 200×300 cm ebatlarında üretilebilir.<br><br>Kendinden sarmalı; kurması ve taşıması çok kolaydır. Sarmalı bir mekanizmaya sahiptir. Kurulum süresi 2-3 dk sürmektedir.<br><br>Tasarım desteğimiz vardır.<br><br>Anlaşmalı kargo ile Türkiye\'nin her yerine gönderim..',
     ],
     'tanitim-standi' => [
       'info' => 'Tanıtım standı; ürün veya hizmetlerin fuar, market ve etkinlik alanlarında sergilenmesi için kullanılan portatif veya sabit sunum alanlarıdır.',
-      'specs' => ['Fuar, market, etkinlik ve açık alan organizasyonları için uygun', 'Marka bilinirliğini artırmak ve müşterilerle etkileşim için tasarlanmış', 'Portatif ve kurulumu kolay', 'Özel ölçü ve tasarım seçenekleri mevcuttur'],
       'desc' => 'Tanıtım standı; ürün veya hizmetlerin fuar, market, etkinlik gibi alanlarda sergilenmesi ve pazarlanması için kullanılan portatif veya sabit sunum alanlarıdır. Bu standlar, marka bilinirliğini artırmak ve müşterilerle doğrudan etkileşim kurmak amacıyla tasarlanır. Kurumsal kimliğinizi yansıtan özel tasarım ve baskı seçenekleriyle hazırlanan tanıtım standları, her organizasyonda dikkat çekici bir görünüm sunar. Kadıköy Matbaa olarak tasarımdan üretime tüm süreçte yanınızdayız.',
     ],
   ];
-  $fcd = $fuar_content[$subpage] ?? ['info'=>'Kaliteli hizmet garantisiyle üretim yapılmaktadır.','specs'=>['Hızlı teslimat','Uygun fiyat garantisi'],'desc'=>'Kadıköy Matbaa olarak '.$flabel.' konusunda hizmet vermekteyiz.'];
+  $fcd = $fuar_content[$subpage] ?? ['info'=>'Kaliteli hizmet garantisiyle üretim yapılmaktadır.','desc'=>'Kadıköy Matbaa olarak '.$flabel.' konusunda hizmet vermekteyiz.'];
   $fuar_gallery_images = [
     'back-drop' => [
       'images/fuar - tanitim standi/fuar - tanitim standi/back drop/back drop 1.jpeg',
@@ -1744,9 +1725,6 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
   <div class="content-wrap">
     <div class="content-main">
       <div class="info-box"><?= $fcd['info'] ?></div>
-      <div class="product-specs">
-        <?php foreach($fcd['specs'] as $spec): ?><p>▸ <?= $spec ?></p><?php endforeach; ?>
-      </div>
       <p class="product-desc"><?= $fcd['desc'] ?></p>
       <?php if($fgi): ?>
       <div class="foto-galeri">
